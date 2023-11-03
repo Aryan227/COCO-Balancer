@@ -43,3 +43,9 @@ Outputs if two JSONs are similar or not (This function helps validate if augment
 ```
 python helper.py --compare_json  --input_source_file val_pruned_augmented.json --input_source_file_2 val_pruned.json
 ```
+
+
+## Results from val2017
+This folder has been added to visualize and also provide the files inputted/outputted through this code.
+
+*Results*: The Shannon Diversity Index on COCO (for validation set): 0.78. The Shannon Diversity Index on COCO_Balanced (for validation set): 0.85
