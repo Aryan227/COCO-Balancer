@@ -242,7 +242,7 @@ def combine_datasets(original_file, input_file_1, input_file_2, output_file):
 
 
 
-def augment_dataset(source_images, input_json, output_json):
+def augment_dataset(input_json, output_json): #Also had source_images as a parameter earlier
     """
     Augment a COCO-style dataset with random transformations and save the augmented dataset to a JSON file.
 
@@ -276,18 +276,20 @@ def augment_dataset(source_images, input_json, output_json):
     updated_annotations = []
 
     for img_info in images:
-        image_path = os.path.join(source_images, img_info['file_name'])  # Assuming images are in 'val2017' folder
-        image = cv2.imread(image_path)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        #image_path = os.path.join(source_images, img_info['file_name'])  # Assuming images are in 'val2017' folder
+        #image = cv2.imread(image_path)
+        #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image_height = img_info['height'] #Added this line to not use images
+        image_width = img_info['width'] #Added this line to not use images
 
         # Get annotations for this image
         image_annotations = [ann for ann in annotations if ann['image_id'] == img_info['id']]
 
-        # Define cropping coordinates
-        x_min = int(0.2 * image.shape[1])  # 20% of image width
-        y_min = int(0.2 * image.shape[0])  # 20% of image height
-        x_max = int(0.8 * image.shape[1])  # 80% of image width
-        y_max = int(0.8 * image.shape[0])  # 80% of image height
+        # Define cropping coordinates (Use image.shape[0] or image.shape[1] if using images
+        x_min = int(0.2 * image_width)  # 20% of image width
+        y_min = int(0.2 * image_height)  # 20% of image height
+        x_max = int(0.8 * image_width)  # 80% of image width
+        y_max = int(0.8 * image_height)  # 80% of image height
 
         transform = Compose([
             OneOf([
@@ -299,7 +301,7 @@ def augment_dataset(source_images, input_json, output_json):
         ], bbox_params=bbox_params, p=1)
 
         # Apply augmentation
-        augmented = transform(image=image, bboxes=[ann['bbox'] for ann in image_annotations], category_id=[ann['category_id'] for ann in image_annotations])
+        #augmented = transform(image=image, bboxes=[ann['bbox'] for ann in image_annotations], category_id=[ann['category_id'] for ann in image_annotations])
 
         # Updated annotations after crop
         for ann in image_annotations:
