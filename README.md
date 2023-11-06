@@ -4,21 +4,22 @@ The project focuses on taking COCO (Common Objects in Context), a popular Comput
 
 ## Usage
 
-Creating a pruned dataset:
+### Creating a pruned dataset:
 ```
 python main.py --create_pruned_dataset --input_source_file instances_val2017.json --output_source_file val_pruned.json --threshold 100
 ```
 
-Augmenting your dataset (when you want to retain its size):
+### Augmenting your dataset (when you want to retain its size):
 ```
 python main.py --create_augmented_dataset_doubled --images_dir val2017 --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
 ```
 
-Augmenting your dataset (when you want to double it in its size):
+### Augmenting your dataset (when you want to double it in its size):
 ```
 python main.py --create_augmented_dataset_doubled --images_dir val2017 --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
 ```
 
+### Additional functions to validate your results (helper.py)
 Counts files in a folder (Use this to validate if your dataset has been downloaded properly):
 ```
 python helper.py --count_files_in_directory --images_dir val2017
