@@ -2,6 +2,11 @@
 
 The project focuses on taking COCO (Common Objects in Context), a popular Computer Vision dataset, and trying to balance it. This is achieved by eliminating images based on our classification of a rare class and a common class.
 
+Run the following after reading run_all:
+```
+./run_all.sh
+```
+
 ## Usage
 
 ### Creating a pruned dataset:
