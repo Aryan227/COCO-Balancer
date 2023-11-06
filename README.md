@@ -11,12 +11,12 @@ python main.py --create_pruned_dataset --input_source_file instances_val2017.jso
 
 ### Augmenting your dataset (when you want to retain its size):
 ```
-python main.py --create_augmented_dataset_doubled --images_dir val2017 --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
+python main.py --create_augmented_dataset --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
 ```
 
 ### Augmenting your dataset (when you want to double it in its size):
 ```
-python main.py --create_augmented_dataset_doubled --images_dir val2017 --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
+python main.py --create_augmented_dataset_doubled --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
 ```
 
 ### Additional functions to validate your results (helper.py)
