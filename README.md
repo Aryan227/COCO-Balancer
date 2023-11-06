@@ -19,6 +19,11 @@ python main.py --create_augmented_dataset --input_source_file val_pruned.json --
 python main.py --create_augmented_dataset_doubled --input_source_file val_pruned.json --output_source_file val_pruned_augmented.json
 ```
 
+### Adding additional classes to your COCO file:
+```
+python add_classes.py --add_additional_classes --input_source_file instances_val2017.json --input_source_file_2 doors.json --output_source_file instances_val2017_with_doors.json
+```
+
 ### Additional functions to validate your results (helper.py)
 Counts files in a folder (Use this to validate if your dataset has been downloaded properly):
 ```
