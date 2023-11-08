@@ -1,6 +1,7 @@
 import os
 import json
 import argparse
+from pycocotools.coco import COCO
 
 def convert_coco_to_yolo(input_file, output_dir): #output_dir should be called ../labels
     """
@@ -18,6 +19,7 @@ def convert_coco_to_yolo(input_file, output_dir): #output_dir should be called .
     with open(input_file, 'r') as f:
         pruned_dataset_1 = json.load(f)
 
+    coco = COCO(input_file)
     coco_annotations = pruned_dataset_1['annotations']
 
     for annotation in coco_annotations:
@@ -37,7 +39,7 @@ def convert_coco_to_yolo(input_file, output_dir): #output_dir should be called .
         label_line = f"{category_id - 1} {x_center} {y_center} {width} {height}\n"
 
         image_filename = img_info['file_name'].split('.')[0]  # Remove file extension
-        label_filename = f"{output_folder}/{image_filename}.txt"
+        label_filename = f"{output_dir}/{image_filename}.txt"
 
         with open(label_filename, 'a') as label_file:
             label_file.write(label_line)
